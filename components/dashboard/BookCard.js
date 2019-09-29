@@ -39,25 +39,27 @@ const BookCard = props => {
             <View style={styles.imageContainer}>
                 <Image style={styles.image} source={{uri: bookURL}} resizeMode='stretch'/>
             </View>
-            <LinearGradient colors={backgroundColor(props.colorID)} start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-                            style={styles.cardContainer}>
-                <View style={styles.textContainer}>
-                    <View style={styles.titleView}>
-                        <Text style={[styles.cardText, styles.largeText]}>{props.book.title}</Text>
-                        <Text style={[styles.cardText, styles.mediumText]}>{props.book.author}</Text>
-                    </View>
-                    <View style={styles.bookProgress}>
-                        <View>
-                            <Text style={styles.bookProgressTitle}>Pages Read</Text>
-                            <Text style={[styles.cardText, styles.mediumText]}>{props.book.pagesRead}</Text>
+            <View style={styles.shadow}>
+                <LinearGradient colors={backgroundColor(props.colorID)} start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+                                style={styles.cardContainer}>
+                    <View style={styles.textContainer}>
+                        <View style={styles.titleView}>
+                            <Text style={[styles.cardText, styles.largeText]}>{props.book.title}</Text>
+                            <Text style={[styles.cardText, styles.mediumText]}>{props.book.author}</Text>
                         </View>
-                        <View style={styles.bookProgressSub}>
-                            <Text style={styles.bookProgressTitle}>Book Progress</Text>
-                            <Text style={[styles.cardText, styles.mediumText]}>{bookProgress + '%'}</Text>
+                        <View style={styles.bookProgress}>
+                            <View>
+                                <Text style={styles.bookProgressTitle}>Pages Read</Text>
+                                <Text style={[styles.cardText, styles.mediumText]}>{props.book.pagesRead}</Text>
+                            </View>
+                            <View style={styles.bookProgressSub}>
+                                <Text style={styles.bookProgressTitle}>Book Progress</Text>
+                                <Text style={[styles.cardText, styles.mediumText]}>{bookProgress + '%'}</Text>
+                            </View>
                         </View>
                     </View>
-                </View>
-            </LinearGradient>
+                </LinearGradient>
+            </View>
         </View>
 
     );
@@ -75,7 +77,7 @@ const styles = StyleSheet.create({
     },
     cardContainer: {
         marginRight: Dimensions.get('window').width - Dimensions.get('window').width / 1.15,
-        height: 160,
+        height: 165,
         paddingTop: 10,
         paddingBottom: 10,
         width: Dimensions.get('window').width / 1.15,
@@ -90,7 +92,14 @@ const styles = StyleSheet.create({
         width: 90,
         justifyContent: 'center',
         alignItems: 'center',
-        ...ThemeConstants.shadowElevateButtonLow
+    },
+    shadow: {
+        marginRight: Dimensions.get('window').width - Dimensions.get('window').width / 1.15,
+        height: 165,
+        borderRadius: 7,
+        width: Dimensions.get('window').width / 1.15,
+        backgroundColor: ColorConstants.cardboard,
+        ...ThemeConstants.shadowElevateButton
     },
     image: {
         position: 'absolute',
@@ -98,6 +107,7 @@ const styles = StyleSheet.create({
         width: 110,
         height: 145,
         borderRadius: 7,
+        ...ThemeConstants.imageShadow,
     },
     textContainer: {
         paddingLeft: 80,

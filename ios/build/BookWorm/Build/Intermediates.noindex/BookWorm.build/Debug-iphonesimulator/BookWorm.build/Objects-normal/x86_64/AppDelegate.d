@@ -22,5 +22,4 @@ dependencies: \
   /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTBridge.h \
   /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTFrameUpdate.h \
   /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTInvalidating.h \
-  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/UMReactNativeAdapter/UMNativeModulesProxy.h \
-  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/react-native-splash-screen/RNSplashScreen.h
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/UMReactNativeAdapter/UMNativeModulesProxy.h

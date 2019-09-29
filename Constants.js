@@ -5,7 +5,8 @@ export const ColorConstants = {
 	primary: '#9795f0',
 	primaryGradient: '#fbc8d4',
 	borderColor: 'silver',
-	cardboard: '#f5f5f5',
+	cardboard: '#F9FAFB',
+	// cardboard: '#f5f5f5',
 	cardBoardSecondary: '#f5f5f5',
 	cardboardDark: '#b6b6b6',
 	Danger: '#ff0000',
@@ -27,6 +28,15 @@ export const ThemeConstants = {
 		shadowRadius: 4.65,
 
 		elevation: 7,
+	},
+	imageShadow: {
+		shadowColor: '#000',
+		shadowOffset: {
+			width: 0,
+			height: 3,
+		},
+		shadowOpacity: 0.29,
+		shadowRadius: 4.65,
 	},
 	shadowElevateButtonLow: {
 		shadowColor: '#000',
@@ -100,7 +110,6 @@ export const ThemeConstants = {
 		cancelModalText: {
 			fontSize: 18,
 			color: ColorConstants.button,
-			fontWeight: 'bold',
 		},
 		modalHeaderTitleView: {
 			justifyContent: 'center',

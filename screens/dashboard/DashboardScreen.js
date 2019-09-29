@@ -9,7 +9,6 @@ import SearchBar from '../../components/SearchBar';
 import {Icon} from 'react-native-elements';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 
-
 //TODO Add Skeleton Loading for Assets
 const DashboardScreen = props => {
 
@@ -21,7 +20,6 @@ const DashboardScreen = props => {
     useEffect(() => {
         setBookList(props.books.filter(item => item.title.indexOf(searchValue) !== -1));
     }, [searchValue]);
-
 
     const openSearchBar = () => {
         Animated.timing(
@@ -108,7 +106,7 @@ const DashboardScreen = props => {
                         },
                     ]
                 }}>
-                    <Text style={styles.mainHeader}>Books</Text>
+                    <Text style={styles.mainHeader}>Library</Text>
                 </Animated.View>
 
                 {/*Search Bar*/}
