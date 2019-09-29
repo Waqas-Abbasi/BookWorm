@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>92BC529C-C0C0-4673-960E-71D04B362124</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>92BC529C-C0C0-4673-960E-71D04B362124.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>BookWorm project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>BookWorm</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building workspace BookWorm with scheme BookWorm and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>591462062.39722598</real>
+			<key>timeStoppedRecording</key>
+			<real>591462064.25867903</real>
+			<key>title</key>
+			<string>Building workspace BookWorm with scheme BookWorm and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>92BC529C-C0C0-4673-960E-71D04B362124</string>
+		</dict>
+		<key>D8439CFC-E332-4D06-AD3D-4CF0CCF48729</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>D8439CFC-E332-4D06-AD3D-4CF0CCF48729.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>BookWorm project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>BookWorm</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building workspace BookWorm with scheme BookWorm and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>591459403.96058905</real>
+			<key>timeStoppedRecording</key>
+			<real>591459406.32504904</real>
+			<key>title</key>
+			<string>Building workspace BookWorm with scheme BookWorm and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>D8439CFC-E332-4D06-AD3D-4CF0CCF48729</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

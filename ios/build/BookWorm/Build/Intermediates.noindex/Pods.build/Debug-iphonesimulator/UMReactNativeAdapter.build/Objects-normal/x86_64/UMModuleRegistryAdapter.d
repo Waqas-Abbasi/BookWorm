@@ -1,0 +1,41 @@
+dependencies: \
+  /Users/waqasabbasi/Desktop/BookWorm/node_modules/expo/node_modules/@unimodules/react-native-adapter/ios/UMReactNativeAdapter/UMModuleRegistryAdapter/UMModuleRegistryAdapter.m \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Target\ Support\ Files/UMReactNativeAdapter/UMReactNativeAdapter-prefix.pch \
+  /Users/waqasabbasi/Desktop/BookWorm/node_modules/expo/node_modules/@unimodules/react-native-adapter/ios/UMReactNativeAdapter/UMViewManagerAdapter/UMViewManagerAdapter.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTViewManager.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTBridgeModule.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTDefines.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/React/RCTInspectorDevServerHelper.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/React/RCTPackagerConnection.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTConvert.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTAnimationType.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTBorderStyle.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTLog.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTAssert.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTUtils.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTPointerEvents.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTTextDecorationLineType.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/yoga/Yoga.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/yoga/YGEnums.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/yoga/YGMacros.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/yoga/YGValue.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTEventDispatcher.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTBridge.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTBridgeDelegate.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTJavaScriptLoader.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTFrameUpdate.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTInvalidating.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/UIView+React.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTComponent.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/UMCore/UMViewManager.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/UMCore/UMExportedModule.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/UMCore/UMDefines.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/UMCore/UMInternalModule.h \
+  /Users/waqasabbasi/Desktop/BookWorm/node_modules/expo/node_modules/@unimodules/react-native-adapter/ios/UMReactNativeAdapter/UMBridgeModule.h \
+  /Users/waqasabbasi/Desktop/BookWorm/node_modules/expo/node_modules/@unimodules/react-native-adapter/ios/UMReactNativeAdapter/UMNativeModulesProxy/UMNativeModulesProxy.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/UMCore/UMModuleRegistry.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/UMCore/UMModuleRegistryDelegate.h \
+  /Users/waqasabbasi/Desktop/BookWorm/node_modules/expo/node_modules/@unimodules/react-native-adapter/ios/UMReactNativeAdapter/UMModuleRegistryAdapter/UMModuleRegistryAdapter.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/UMCore/UMModuleRegistryProvider.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/UMCore/UMSingletonModule.h \
+  /Users/waqasabbasi/Desktop/BookWorm/node_modules/expo/node_modules/@unimodules/react-native-adapter/ios/UMReactNativeAdapter/UMModuleRegistryAdapter/UMViewManagerAdapterClassesRegistry.h
