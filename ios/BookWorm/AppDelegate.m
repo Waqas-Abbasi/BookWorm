@@ -13,6 +13,7 @@
 #import <UMCore/UMModuleRegistry.h>
 #import <UMReactNativeAdapter/UMNativeModulesProxy.h>
 #import <UMReactNativeAdapter/UMModuleRegistryAdapter.h>
+#import "RNSplashScreen.h"
 
 @implementation AppDelegate
 
@@ -31,6 +32,7 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
 
+  [RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
   [super application:application didFinishLaunchingWithOptions:launchOptions];
 
   return YES;

@@ -9,6 +9,8 @@ import SearchBar from '../../components/SearchBar';
 import {Icon} from 'react-native-elements';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 
+
+//TODO Add Skeleton Loading for Assets
 const DashboardScreen = props => {
 
     const [searchValue, handleSearchValue] = useState('');
@@ -19,6 +21,7 @@ const DashboardScreen = props => {
     useEffect(() => {
         setBookList(props.books.filter(item => item.title.indexOf(searchValue) !== -1));
     }, [searchValue]);
+
 
     const openSearchBar = () => {
         Animated.timing(
@@ -50,7 +53,7 @@ const DashboardScreen = props => {
     );
 
     addBook = () => {
-        console.log('Add Book');
+        props.navigation.navigate('AddBook');
     };
 
     return (
@@ -91,6 +94,18 @@ const DashboardScreen = props => {
                                 outputRange: [0, -155]
                             })
                         },
+                        {
+                            scaleY: slideSearchBarAnim.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: [1, 0]
+                            })
+                        },
+                        {
+                            scaleX: slideSearchBarAnim.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: [1, 0]
+                            })
+                        },
                     ]
                 }}>
                     <Text style={styles.mainHeader}>Books</Text>
@@ -104,7 +119,7 @@ const DashboardScreen = props => {
                             {
                                 translateX: slideSearchBarAnim.interpolate({
                                     inputRange: [0, 1],
-                                    outputRange: [0, -270]
+                                    outputRange: [0, -Dimensions.get('window').width / 1.15]
                                 })
                             },
                         ]
@@ -120,18 +135,19 @@ const DashboardScreen = props => {
                                 {
                                     translateX: slideSearchBarAnim.interpolate({
                                         inputRange: [0, 1],
-                                        outputRange: [0, -300]
+                                        outputRange: [0, -Dimensions.get('window').width / 1.07]
                                     })
                                 },
                             ],
                             width: slideSearchBarAnim.interpolate({
                                 inputRange: [0, 1],
-                                outputRange: [0, Dimensions.get('window').width / 1.35]
+                                outputRange: [0, Dimensions.get('window').width / 1.05]
                             }),
                             opacity: slideSearchBarAnim
                         }}>
                         <SearchBar value={searchValue} customStyle={styles.searchBarInner}
-                                   handleValueChange={handleSearchValue}/>
+                                   handleValueChange={handleSearchValue}
+                                   placeholderText='Search My Books'/>
                     </Animated.View>
                     <Animated.View
                         style={{
@@ -193,7 +209,7 @@ const styles = StyleSheet.create({
     },
     searchBar: {
         position: 'absolute',
-        left: 25,
+        left: 22,
         bottom: 5,
         height: 40,
     },
@@ -205,6 +221,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         height: 40,
         bottom: 2.5,
+        right: 5,
         opacity: 0,
     },
 
