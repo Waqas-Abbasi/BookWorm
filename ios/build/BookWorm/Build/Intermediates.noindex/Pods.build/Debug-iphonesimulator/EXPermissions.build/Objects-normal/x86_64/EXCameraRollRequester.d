@@ -1,8 +1,8 @@
 dependencies: \
-  /Users/waqasabbasi/Desktop/BookWorm/node_modules/expo/node_modules/expo-permissions/ios/EXPermissions/EXCameraRollRequester.m \
+  /Users/waqasabbasi/Desktop/BookWorm/node_modules/expo-permissions/ios/EXPermissions/EXCameraRollRequester.m \
   /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Target\ Support\ Files/EXPermissions/EXPermissions-prefix.pch \
-  /Users/waqasabbasi/Desktop/BookWorm/node_modules/expo/node_modules/expo-permissions/ios/EXPermissions/EXCameraRollRequester.h \
-  /Users/waqasabbasi/Desktop/BookWorm/node_modules/expo/node_modules/expo-permissions/ios/EXPermissions/EXPermissions.h \
+  /Users/waqasabbasi/Desktop/BookWorm/node_modules/expo-permissions/ios/EXPermissions/EXCameraRollRequester.h \
+  /Users/waqasabbasi/Desktop/BookWorm/node_modules/expo-permissions/ios/EXPermissions/EXPermissions.h \
   /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/UMCore/UMExportedModule.h \
   /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/UMCore/UMDefines.h \
   /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Private/UMCore/UMInternalModule.h \

@@ -9,14 +9,14 @@ import AddCustomBookScreen from './AddCustomBookScreen';
 const AddBookScreen = props => {
 
     const [barcodeModalActive, setBarcodeModalActive] = useState(false);
-    const [searchBookModalActive, setSearchBookModalActive] = useState(false);
 
     const toggleBarcodeModal = () => {
         setBarcodeModalActive(!barcodeModalActive);
     };
 
     const toggleSearchBookModal = () => {
-        setSearchBookModalActive(!searchBookModalActive);
+        props.navigation.popToTop();
+        props.navigation.navigate('Explore');
     };
 
     const toggleAddCustomBook = () => {
@@ -30,13 +30,6 @@ const AddBookScreen = props => {
                 isVisible={barcodeModalActive}
                 style={styles.modal}>
                 <Button title='Dismiss' onPress={toggleBarcodeModal}/>
-            </Modal>
-
-            {/*Search Book Online Modal*/}
-            <Modal
-                isVisible={searchBookModalActive}
-                style={styles.modal}>
-                <Button title='Dismiss' onPress={toggleSearchBookModal}/>
             </Modal>
 
             <Image
@@ -102,8 +95,8 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     bannerImage: {
-        height: 300,
-        width: 100,
+        height: Dimensions.get('window').height / 2.5,
+        width: Dimensions.get('window').width / 3,
     },
 });
 

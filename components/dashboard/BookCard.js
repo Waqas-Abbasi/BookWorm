@@ -31,13 +31,12 @@ const backgroundColor = id => {
 //TODO Fix CSS when Title name increases i.e. Dynamic CSS
 //TODO Fix CSS when author name increases, i.e. Dynamic CSS
 const BookCard = props => {
-    const bookURL = 'https://dynamic.indigoimages.ca/books/1408855704.jpg?altimages=false&scaleup=true&maxheight=515&width=380&quality=85&sale=2&lang=en';
     const bookProgress = Math.round((props.book.pagesRead / props.book.totalPages) * 100);
 
     return (
         <View style={styles.mainContainer}>
             <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{uri: bookURL}} resizeMode='stretch'/>
+                <Image style={styles.image} source={{uri: props.book.img.uri}} resizeMode='cover'/>
             </View>
             <View style={styles.shadow}>
                 <LinearGradient colors={backgroundColor(props.colorID)} start={{x: 0, y: 0}} end={{x: 1, y: 0}}

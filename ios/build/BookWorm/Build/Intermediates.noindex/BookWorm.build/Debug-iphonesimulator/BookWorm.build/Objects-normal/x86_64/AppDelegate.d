@@ -22,4 +22,32 @@ dependencies: \
   /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTBridge.h \
   /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTFrameUpdate.h \
   /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/React/React/RCTInvalidating.h \
-  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/UMReactNativeAdapter/UMNativeModulesProxy.h
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/UMReactNativeAdapter/UMNativeModulesProxy.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKCoreKit.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKAccessToken.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKCopying.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKGraphRequestConnection.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKAppEvents.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKApplicationDelegate.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKButton.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKConstants.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKGraphRequest.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKGraphRequestDataAttachment.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKSettings.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKTestUsersManager.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKUtility.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKAppLink.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKAppLinkTarget.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKAppLinkNavigation.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKAppLinkResolving.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKAppLinkResolver.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKAppLinkReturnToRefererController.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKAppLinkReturnToRefererView.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKAppLinkUtility.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKGraphErrorRecoveryProcessor.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKMeasurementEvent.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKMutableCopying.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKProfile.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKProfilePictureView.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKURL.h \
+  /Users/waqasabbasi/Desktop/BookWorm/ios/Pods/Headers/Public/FBSDKCoreKit/FBSDKWebViewAppLinkResolver.h

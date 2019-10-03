@@ -31,6 +31,10 @@ const DashboardScreen = props => {
         ).start();
     };
 
+    useEffect(() => {
+        setBookList(props.books);
+    }, [props.books]);
+
     const closeSearchBar = () => {
         Keyboard.dismiss();
 

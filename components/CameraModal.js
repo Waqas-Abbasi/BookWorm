@@ -4,6 +4,7 @@ import {Camera} from 'expo-camera';
 import Modal from "react-native-modal";
 import {getStatusBarHeight} from "react-native-status-bar-height";
 import Icon from './icon/camera_flip_ios';
+import Ionicon from 'react-native-vector-icons/Ionicons'
 
 class CameraModal extends React.Component {
 
@@ -78,12 +79,13 @@ class CameraModal extends React.Component {
     };
 
     render() {
+        const flashStatus = this.state.camera.flashMode == Camera.Constants.FlashMode.on ? 'ios-flash' : 'ios-flash-off';
+        const imageStatus = (this.state.camera.img && this.state.camera.img.uri) ? 'Retake' : 'Cancel';
         return (
             <Modal isVisible={this.props.isVisible} style={styles.modalContainer} coverScreen={true}>
                 <View style={styles.cameraHeader}>
                     <TouchableOpacity onPress={this.toggleFlash}>
-                        <Text
-                            style={styles.cancelButtonText}>{this.state.camera.flashMode == Camera.Constants.FlashMode.on ? 'Flash On' : 'Flash Off'}</Text>
+                        <Ionicon name={flashStatus} size={30} color='white' />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.cameraFlipButton} onPress={this.flipCamera}>
                         <Icon name='flip_camera_ios' size={35} color='white'/>
@@ -109,7 +111,7 @@ class CameraModal extends React.Component {
                 }
                 <View style={styles.cameraFooter}>
                     <TouchableOpacity style={styles.cancelButton} onPress={this.cancelImage}>
-                        <Text style={styles.cancelButtonText}>Cancel</Text>
+                        <Text style={styles.cancelButtonText}>{imageStatus}</Text>
                     </TouchableOpacity>
                     <View style={styles.captureButton}>
                         <View style={styles.captureButtonOuter}>

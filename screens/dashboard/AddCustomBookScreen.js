@@ -16,18 +16,44 @@ import Modal from 'react-native-modal';
 import {ColorConstants, ThemeConstants} from '../../Constants';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import Ionicon from 'react-native-vector-icons/Ionicons';
+import * as Permissions from 'expo-permissions';
+import * as ImagePicker from 'expo-image-picker';
+import Constants from 'expo-constants';
+import CameraModal from '../../components/CameraModal';
+import * as Font from 'expo-font';
+import EntypoIcon from 'react-native-vector-icons/Entypo';
+import {addBook} from '../../redux/actions/bookActions';
+import {connect} from 'react-redux';
 
+//TODO Change Alerts, and Permission Requests text
+//TODO Error Handling, Try Catch
+//TODO Add Loading Icon, Inside Camera, and when Image Picker is Launched
+//TODO Text Verification, i.e. things should not be blank
 const AddCustomBookScreen = props => {
 
-    const [imgSource, setImgSource] = useState('');
     const [addImageOptionsActive, setAddImageOptionsActive] = useState(false);
+    const [photoPermissions, setPhotoPermissions] = useState(false);
+    const [cameraPermission, setCameraPermission] = useState(false);
+    const [cameraModalActive, setCameraModalActive] = useState(false);
 
     const [book, setBook] = useState({
         title: '',
         author: '',
         totalPages: '',
         pagesRead: '',
+        img: {
+            uri: null,
+        }
     });
+
+    useEffect(() => {
+        Font.loadAsync({
+            'camera_flip_ios': require('../../assets/fonts/camera_flip_ios/icomoon.ttf'),
+
+        });
+        getCameraPermissionAsync().catch(err => console.log(err));
+        getCameraRollPermissionAsync().catch(err => console.log(err));
+    }, []);
 
     const handleValueChange = key => value => {
         setBook({
@@ -48,30 +74,113 @@ const AddCustomBookScreen = props => {
 
     useEffect(() => {
         props.navigation.setParams({
-            addBook,
+            saveBook,
         });
     }, []);
 
-    const addBook = () => {
+    useEffect(() => {
+        props.navigation.setParams({
+            saveBook,
+        })
+    }, [book]);
+
+    const saveBook = () => {
+        props.addBook(book);
         props.navigation.popToTop();
-    };
-
-    const takePicture = () => {
-
-    };
-
-    const importFromLibrary = () => {
-
     };
 
     const dismissKeyboard = () => {
         Keyboard.dismiss();
     };
 
+    const getCameraRollPermissionAsync = async () => {
+        if (Constants.platform.ios) {
+            const {status} = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+            if (status == 'granted') {
+                setPhotoPermissions(true);
+            }
+        }
+    };
+
+    const getCameraPermissionAsync = async () => {
+        if (Constants.platform.ios) {
+            const {status} = await Permissions.askAsync(Permissions.CAMERA);
+            if (status == 'granted') {
+                await setCameraPermission(true);
+            }
+        }
+    };
+
+    const openCamera = () => {
+        //Close the Image Options Modal First
+        setAddImageOptionsActive(false);
+        setTimeout(() => toggleCamera(), 400);
+    };
+
+    const toggleCamera = async () => {
+        if (!cameraPermission) {
+            alert('Sorry, We need Camera and Camera Roll permissions to make this work!');
+            return;
+        }
+        if (!cameraModalActive) {
+            setCameraModalActive(true);
+        } else {
+            setCameraModalActive(false);
+        }
+    };
+
+    const openImagePickerDelay = async () => {
+        //Close the Image Options Modal First
+        setAddImageOptionsActive(false);
+        setTimeout(() => openImagePicker(), 400);
+    };
+
+    const openImagePicker = async () => {
+        if (!photoPermissions) {
+            alert('Sorry, we need camera roll permissions to make this work!');
+        }
+
+        try {
+            let result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                aspect: [1, 1],
+            });
+
+            if (!result.cancelled) {
+                setBook({
+                    ...book,
+                    img: result
+                });
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    const cancelImage = () => {
+        setBook({
+            ...book,
+            img: {
+                uri: null,
+            }
+        });
+
+    };
+
+    const selectedImage = img => {
+        setBook({
+            ...book,
+            img: img,
+        });
+    };
+
     return (
         <View style={styles.mainContainer}>
             <TouchableWithoutFeedback onPress={dismissKeyboard}>
                 <View>
+                    <CameraModal isVisible={cameraModalActive} toggleCameraModal={toggleCamera}
+                                 selectedImage={selectedImage}/>
                     {/*Image Options Modal*/}
                     <Modal
                         isVisible={addImageOptionsActive}
@@ -81,14 +190,14 @@ const AddCustomBookScreen = props => {
                             <View style={styles.innerModalButtonContainer}>
                                 <TouchableOpacity
                                     style={[styles.modalButton, styles.modalButtonBorder]}
-                                    onPress={takePicture}>
+                                    onPress={openCamera}>
                                     <Text style={styles.modalTextOptions}>Take Picture</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.innerModalButtonContainer}>
                                 <TouchableOpacity
                                     style={styles.modalButton}
-                                    onPress={importFromLibrary}>
+                                    onPress={openImagePickerDelay}>
                                     <Text style={styles.modalTextOptions}>Import From Library</Text>
                                 </TouchableOpacity>
                             </View>
@@ -104,18 +213,23 @@ const AddCustomBookScreen = props => {
 
                     <View style={styles.bookInformation}>
                         <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={200}>
-                            {imgSource ?
-                                <Image source={{uri: imgSource}}/>
-                                :
-                                <View style={styles.addPictureView}>
+                            <View style={styles.addPictureView}>
+                                {book.img && book.img.uri ?
+                                    <View>
+                                        <Image source={{uri: book.img.uri}} style={styles.image}/>
+                                        <TouchableOpacity style={styles.cancelImageButton} onPress={cancelImage}>
+                                            <EntypoIcon name='circle-with-cross' size={25} color='white'/>
+                                        </TouchableOpacity>
+                                    </View>
+                                    :
                                     <TouchableOpacity activeOpacity={0.8} onPress={toggleAddImageOptions}>
                                         <View style={styles.uploadImage}>
                                             <AntDesignIcon name='pluscircle' size={35} color='green'/>
                                             <Text style={styles.addPictureText}>Add Picture</Text>
                                         </View>
                                     </TouchableOpacity>
-                                </View>
-                            }
+                                }
+                            </View>
 
                             <View style={styles.textInformation}>
                                 <Text style={styles.textInputHeader}>Title</Text>
@@ -158,7 +272,7 @@ AddCustomBookScreen.navigationOptions = ({navigation}) => ({
         </TouchableOpacity>
     ),
     headerRight: (
-        <TouchableOpacity style={styles.addButton} onPress={navigation.getParam('addBook')}>
+        <TouchableOpacity style={styles.addButton} onPress={navigation.getParam('saveBook')}>
             <Text style={styles.modalText}>Save</Text>
         </TouchableOpacity>
     )
@@ -192,9 +306,15 @@ const styles = StyleSheet.create({
         height: 170,
         borderRadius: 7,
         borderWidth: 1.5,
+        borderColor: '#a4a4a4',
         borderStyle: 'dashed',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    image: {
+        width: 130,
+        height: 170,
+        borderRadius: 7,
     },
     textInformation: {
         paddingLeft: 10,
@@ -253,8 +373,17 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         width: 50,
         justifyContent: 'center',
+    },
+    cancelImageButton: {
+        position: 'absolute',
+        top: 5,
+        right: 5,
     }
 
 });
 
-export default AddCustomBookScreen;
+const mapDispatchToProps = {
+    addBook,
+};
+
+export default connect(null, mapDispatchToProps)(AddCustomBookScreen);

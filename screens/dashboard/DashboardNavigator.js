@@ -9,7 +9,7 @@ const BookNavigator = createStackNavigator({
     AddBook: AddBookScreen,
     AddCustomBook: AddCustomBookScreen,
 }, {
-    initialRouteName: 'AddCustomBook'
+    initialRouteName: 'Dashboard'
 });
 
 
