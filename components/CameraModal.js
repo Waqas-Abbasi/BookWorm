@@ -5,6 +5,7 @@ import Modal from "react-native-modal";
 import {getStatusBarHeight} from "react-native-status-bar-height";
 import Icon from './icon/camera_flip_ios';
 import Ionicon from 'react-native-vector-icons/Ionicons'
+import * as Font from 'expo-font';
 
 class CameraModal extends React.Component {
 
@@ -19,6 +20,16 @@ class CameraModal extends React.Component {
         }
 
     };
+    loadResourcesAsync = async () => Promise.all([
+        Font.loadAsync({
+            'camera_flip_ios': require('../assets/fonts/camera_flip_ios/icomoon.ttf'),
+
+        }),
+    ]);
+
+    componentDidMount() {
+        this.loadResourcesAsync()
+    }
 
     toggleModal = () => {
         // this.cancelImage()

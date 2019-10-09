@@ -855,6 +855,20 @@
     pouchdb-collections "^1.0.1"
     tiny-queue "^0.2.1"
 
+"@react-native-community/async-storage@^1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.6.2.tgz#a19ca7149c4dfe8216f2330e6b1ebfe2d075ef92"
+  integrity sha512-EJGsbrHubK1mGxPjWB74AaHAd5m9I+Gg2RRPZzMK6org7QOU9WOBnIMFqoeVto3hKOaEPlk8NV74H6G34/2pZQ==
+
+"@react-native-community/audio-toolkit@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@react-native-community/audio-toolkit/-/audio-toolkit-2.0.2.tgz#ae553211bb9b6a8be8c0b25e017b6cbf7e60621e"
+  integrity sha512-LzQ05mI+qQ/alSy/WL2HOWxRMIGojNPk1CsDuALbcIptR9xuelLGtUy+U6r5+a83kLgCfGlQnOcWR0F0GXOKTg==
+  dependencies:
+    async "^2.0.0"
+    eventemitter3 "^1.2.0"
+    lodash "^4.13.1"
+
 "@react-native-community/cli@^1.2.1":
   version "1.11.2"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli/-/cli-1.11.2.tgz#b14967f24a389f5a16889a747345cf0e5757a2f1"
@@ -894,6 +908,11 @@
     ws "^1.1.0"
     xcode "^2.0.0"
     xmldoc "^0.4.0"
+
+"@react-native-community/slider@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@react-native-community/slider/-/slider-2.0.2.tgz#d7e8d098cbd3434e7dae783777086cbb9875680d"
+  integrity sha512-Hj1hATFe8jiS7b/vvLJ8HCgEq4P9TynWdQL2GrxD4NlUh6xFY2XFDcpmUAxpeUDAN+vbq3/JI+P5Q5nweC1FeQ==
 
 "@react-navigation/core@^3.5.1":
   version "3.5.1"
@@ -1223,7 +1242,7 @@ async-limiter@~1.0.0:
   resolved "https://registry.yarnpkg.com/async-limiter/-/async-limiter-1.0.1.tgz#dd379e94f0db8310b08291f9d64c3209766617fd"
   integrity sha512-csOlWGAcRFJaI6m+F2WKdnMKr4HhdhFVBk0H/QbJFMCr+uO2kwohwXQPxw/9OCxp05r5ghVBFSyioixx3gfkNQ==
 
-async@^2.4.0:
+async@^2.0.0, async@^2.4.0:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
   integrity sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg==
@@ -1979,6 +1998,11 @@ event-target-shim@^1.0.5:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/event-target-shim/-/event-target-shim-1.1.1.tgz#a86e5ee6bdaa16054475da797ccddf0c55698491"
   integrity sha1-qG5e5r2qFgVEddp5fM3fDFVphJE=
+
+eventemitter3@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-1.2.0.tgz#1c86991d816ad1e504750e73874224ecf3bec508"
+  integrity sha1-HIaZHYFq0eUEdQ5zh0Ik7PO+xQg=
 
 eventemitter3@^3.0.0:
   version "3.1.2"
@@ -3175,7 +3199,7 @@ lodash.throttle@^4.1.1:
   resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
   integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
 
-lodash@^4.0.0, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.5.0, lodash@^4.6.0, lodash@^4.6.1, lodash@latest:
+lodash@^4.0.0, lodash@^4.13.1, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.5.0, lodash@^4.6.0, lodash@^4.6.1, lodash@latest:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
@@ -4391,6 +4415,11 @@ react-native-animatable@^1.3.1:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-background-timer@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-background-timer/-/react-native-background-timer-2.1.1.tgz#9a2489681ab2f8033c213c73272e9d4c47572cd5"
+  integrity sha512-cuXIIv+dcG8a8qkTD8pMzeqOEZCO+UGKglZWIe1osve+yJslmCowYQff+bI9xa7NOt2w+Vtd4L3d9JonlSqODg==
+
 react-native-branch@~3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-3.0.1.tgz#5b07b61cbd290168cd3c3662e017ebe0f356d2ca"
@@ -4410,11 +4439,6 @@ react-native-elements@^1.2.3:
     react-native-ratings "^6.3.0"
     react-native-status-bar-height "^2.2.0"
 
-react-native-fbsdk@^0.10.0:
-  version "0.10.3"
-  resolved "https://registry.yarnpkg.com/react-native-fbsdk/-/react-native-fbsdk-0.10.3.tgz#5bd6c7e3b19490d61c368e7f569e6990520dbdd9"
-  integrity sha512-qIej8QvDbKVAin7jIDnd5qH+LxfzlIIXE0xEY4z4SBaIMiSL1MqPx8OfdVasu453Qza58dm/hj7UyXP4loX+Iw==
-
 react-native-gesture-handler@~1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.3.0.tgz#d0386f565928ccc1849537f03f2e37fd5f6ad43f"
@@ -4424,10 +4448,30 @@ react-native-gesture-handler@~1.3.0:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
-react-native-google-signin@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-google-signin/-/react-native-google-signin-2.0.0.tgz#0d9cb128a65c0b48216716b979c1ada35900ceb0"
-  integrity sha512-9loM4lcCIdbco5BnmNio7yGaXQKCpCaY1VRmYiTSvC5NjuSf6Ui6jZRee46p/YdaU4yRnS3u5Vct6Psrvr0HNg==
+react-native-image-pan-zoom@^2.1.9:
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/react-native-image-pan-zoom/-/react-native-image-pan-zoom-2.1.11.tgz#61bcb69219d95e76a9797d23e4a2e8e0bd654ae9"
+  integrity sha512-ZCisGUFpPchHXsjT7ZI0anlSLPgcTmjRKXqpVnPu3RDWFXfKjuL4zpY57DX4Y8YgGZCpbf9fApN7KjVYody2Mw==
+
+react-native-image-zoom-viewer@^2.2.26:
+  version "2.2.26"
+  resolved "https://registry.yarnpkg.com/react-native-image-zoom-viewer/-/react-native-image-zoom-viewer-2.2.26.tgz#c6f070abb094cfbe1b3b7d8a38ad979a5facbdc5"
+  integrity sha512-Mh4+CJQCDcAumLFXLlDk8nQ5iMxNnupc9HwktsZ3I/v4HULcFPmTLDQ0HGAxjLa5foZRPnKDN06iKGsEb9raoA==
+  dependencies:
+    react-native-image-pan-zoom "^2.1.9"
+
+react-native-iphone-x-helper@^1.0.3:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz#645e2ffbbb49e80844bb4cbbe34a126fda1e6772"
+  integrity sha512-/VbpIEp8tSNNHIvstuA3Swx610whci1Zpc9mqNkqn14DkMbw+ORviln2u0XyHG1kPvvwTNGZY6QpeFwxYaSdbQ==
+
+react-native-keyboard-aware-scroll-view@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.9.1.tgz#9e54b565a5f19b30bed12221d48921781f7630af"
+  integrity sha512-tBZ8rmjELN0F6t5UBp5CW3NYmZXgVnJSzVCssv/OqG2t6kiB+OUTqxNvUP24K+HARX4H+XaW0aEJSFQkQCv6KA==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-iphone-x-helper "^1.0.3"
 
 react-native-linear-gradient@^2.5.6:
   version "2.5.6"

@@ -1,8 +1,8 @@
 import React from 'react';
-import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {ColorConstants, ThemeConstants} from '../../Constants';
 import LinearGradient from 'react-native-linear-gradient';
-
+import {withNavigation} from 'react-navigation'
 
 const backgroundColor = id => {
     switch (id) {
@@ -33,33 +33,41 @@ const backgroundColor = id => {
 const BookCard = props => {
     const bookProgress = Math.round((props.book.pagesRead / props.book.totalPages) * 100);
 
+    const openSessionPage = () => {
+      props.navigation.navigate('Sessions', {
+          sessionList: props.book.sessionList
+      })
+    };
+
     return (
-        <View style={styles.mainContainer}>
-            <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{uri: props.book.img.uri}} resizeMode='cover'/>
-            </View>
-            <View style={styles.shadow}>
-                <LinearGradient colors={backgroundColor(props.colorID)} start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-                                style={styles.cardContainer}>
-                    <View style={styles.textContainer}>
-                        <View style={styles.titleView}>
-                            <Text style={[styles.cardText, styles.largeText]}>{props.book.title}</Text>
-                            <Text style={[styles.cardText, styles.mediumText]}>{props.book.author}</Text>
-                        </View>
-                        <View style={styles.bookProgress}>
-                            <View>
-                                <Text style={styles.bookProgressTitle}>Pages Read</Text>
-                                <Text style={[styles.cardText, styles.mediumText]}>{props.book.pagesRead}</Text>
+        <TouchableOpacity onPress={openSessionPage} activeOpacity={0.8}>
+            <View style={styles.mainContainer}>
+                <View style={styles.imageContainer}>
+                    <Image style={styles.image} source={{uri: props.book.img.uri}} resizeMode='cover'/>
+                </View>
+                <View style={styles.shadow}>
+                    <LinearGradient colors={backgroundColor(props.colorID)} start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+                                    style={styles.cardContainer}>
+                        <View style={styles.textContainer}>
+                            <View style={styles.titleView}>
+                                <Text style={[styles.cardText, styles.largeText]}>{props.book.title}</Text>
+                                <Text style={[styles.cardText, styles.mediumText]}>{props.book.author}</Text>
                             </View>
-                            <View style={styles.bookProgressSub}>
-                                <Text style={styles.bookProgressTitle}>Book Progress</Text>
-                                <Text style={[styles.cardText, styles.mediumText]}>{bookProgress + '%'}</Text>
+                            <View style={styles.bookProgress}>
+                                <View>
+                                    <Text style={styles.bookProgressTitle}>Pages Read</Text>
+                                    <Text style={[styles.cardText, styles.mediumText]}>{props.book.pagesRead}</Text>
+                                </View>
+                                <View style={styles.bookProgressSub}>
+                                    <Text style={styles.bookProgressTitle}>Book Progress</Text>
+                                    <Text style={[styles.cardText, styles.mediumText]}>{bookProgress + '%'}</Text>
+                                </View>
                             </View>
                         </View>
-                    </View>
-                </LinearGradient>
+                    </LinearGradient>
+                </View>
             </View>
-        </View>
+        </TouchableOpacity>
 
     );
 };
@@ -137,4 +145,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default BookCard;
+export default withNavigation(BookCard);

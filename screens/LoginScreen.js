@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Button,
     Dimensions,
@@ -16,15 +16,12 @@ import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {loginUser, registerUser} from '../redux/actions/userActions';
 import {connect} from 'react-redux';
 
-const FBLoginButton = require('../components/FBLoginButton');
-
-
+//TODO Reset Password
 //TODO Clicking the thing you have read etc. Terms and Services
 //TODO Make sure both passwords are same
 const LoginScreen = props => {
 
     const [userInfo, setUserInfo] = useState({
-        name: '',
         email: '',
         password: '',
         repeatPassword: '',
@@ -32,11 +29,13 @@ const LoginScreen = props => {
 
     const [userLoginInfo, setUserLoginInfo] = useState({
         //TODO Fix so that it checks email over Username in backend
-        username: 'Waqas909',
         email: '',
         password: '',
     });
 
+    const [error, setError] = useState('');
+    const [registerSuccess, setRegisterSuccess] = useState(false);
+    const [loginSuccess, setLoginSuccess] = useState(false);
     const [registerShow, setRegisterShow] = useState(true);
 
 
@@ -56,7 +55,6 @@ const LoginScreen = props => {
         });
     };
 
-    const handleNameChange = handleTextChange('name');
     const handleEmailChange = handleTextChange('email');
     const handlePasswordChange = handleTextChange('password');
     const handleRepeatPassword = handleTextChange('repeatPassword');
@@ -64,21 +62,92 @@ const LoginScreen = props => {
     const handleEmailLoginChange = handleValueChange('email');
     const handlePasswordLoginChange = handleValueChange('password');
 
+
+    useEffect(() => {
+        setRegisterShow(props.navigation.getParam('registerUser'));
+    }, []);
+    useEffect(() => {
+        if (props.user.error) {
+            setError(props.user.error);
+        } else {
+            setError(null);
+        }
+
+        if (props.user.registerSuccess) {
+            setRegisterSuccess(true);
+            setRegisterShow(false);
+        } else {
+            setRegisterSuccess(false);
+        }
+
+        if (props.user.loginSuccess) {
+            setLoginSuccess(true);
+        } else {
+            setLoginSuccess(false);
+        }
+    }, [props.user]);
     //Loading Icon When Successful Login
+
+    const inputValidate = () => {
+        setError(null);
+        let emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (registerShow) {
+            if (userInfo.email == '' || userInfo.password == '' || userInfo.repeatPassword == '') {
+                setError('Please enter and fill all the fields.');
+                return false;
+            }
+
+            if (userInfo.password != userInfo.repeatPassword) {
+                setError('Your passwords do not match.');
+                return false;
+            }
+
+            if (!emailReg.test(userInfo.email)) {
+                setError('Please enter a valid email address.');
+                return false;
+            }
+
+            return true;
+        } else {
+            if (userLoginInfo.email == '' && userLoginInfo.password == '') {
+                setError('You must enter your email address & your password.');
+                return false;
+            } else if (userLoginInfo.email == '') {
+                setError('You must enter your email address.');
+                return false;
+            } else if (userLoginInfo.password == '') {
+                setError('You must enter your password.');
+                return false;
+            }
+
+            if (!emailReg.test(userLoginInfo.email)) {
+                setError('Please enter a valid email address.');
+                return false;
+            }
+
+
+            return true;
+        }
+    };
+
     const loginUser = () => {
-        props.loginUser(userLoginInfo);
+        if (inputValidate()) {
+            props.loginUser(userLoginInfo);
+        }
     };
 
     const registerUser = () => {
-        props.registerUser(userInfo);
+        if (inputValidate()) {
+            props.registerUser(userInfo);
+        }
     };
 
     const dismissKeyboard = () => {
-        console.log('called');
         Keyboard.dismiss();
     };
 
     const toggleRegister = () => {
+        setError('');
         setRegisterShow(!registerShow);
     };
 
@@ -91,22 +160,9 @@ const LoginScreen = props => {
                             <Text style={styles.title}>Bookworm</Text>
                             <Text style={styles.subtitle}>Make Reading A True Experience</Text>
                         </View>
-                        <FBLoginButton/>
-
-                        <View style={styles.lineBreakOr}>
-                            <View style={styles.linebreak}></View>
-                            <Text style={styles.orText}>or</Text>
-                            <View style={styles.linebreak}></View>
-                        </View>
-
                         {registerShow ?
+                            //Register Text
                             <View style={styles.appLogin}>
-                                <TextInput
-                                    style={styles.textInput}
-                                    placeholder={'Name'}
-                                    placeholderTextColor={ColorConstants.placeholderText}
-                                    onChangeText={handleNameChange}
-                                    value={userInfo.name}/>
                                 <TextInput
                                     style={styles.textInput}
                                     placeholder={'Email'}
@@ -138,7 +194,20 @@ const LoginScreen = props => {
                                     </Text>
                                     <Button title={'Sign In'} onPress={toggleRegister}/>
                                 </View>
+
+                                {error ?
+                                    <View style={styles.errorView}>
+                                        <Text style={styles.error}>{error}</Text>
+                                    </View> : null
+                                }
+
+                                {registerSuccess ?
+                                    <View style={styles.successView}>
+                                        <Text style={styles.success}>Successfully Registered!</Text>
+                                    </View> : null
+                                }
                             </View> :
+                            //Login Text
                             <View style={styles.appLogin}>
                                 <TextInput
                                     style={styles.textInput}
@@ -153,6 +222,7 @@ const LoginScreen = props => {
                                     onChangeText={handlePasswordLoginChange}
                                     secureTextEntry={true}
                                     value={userLoginInfo.password}/>
+
                                 <TouchableOpacity style={styles.button} onPress={loginUser}>
                                     <Text style={styles.buttonText}>Sign In</Text>
                                 </TouchableOpacity>
@@ -163,6 +233,18 @@ const LoginScreen = props => {
                                     </Text>
                                     <Button title={'Sign Up'} onPress={toggleRegister}/>
                                 </View>
+
+                                {error ?
+                                    <View style={styles.errorView}>
+                                        <Text style={styles.error}>{error}</Text>
+                                    </View> : null
+                                }
+
+                                {loginSuccess ?
+                                    <View style={styles.successView}>
+                                        <Text style={styles.success}>Logged In Successfully!</Text>
+                                    </View> : null
+                                }
                             </View>
                         }
 
@@ -257,7 +339,41 @@ const styles = StyleSheet.create({
     loginText: {
         fontSize: 17.5,
         color: '#767676',
+    },
+    errorView: {
+        padding: 5,
+        marginTop: 10,
+        backgroundColor: '#ffcccb',
+        borderRadius: 5,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: Dimensions.get('window').width / 1.3,
+        ...ThemeConstants.shadowElevateButtonLow
+    },
+    error: {
+        color: ColorConstants.Danger,
+        fontSize: 15,
+    },
+    successView: {
+        padding: 5,
+        marginTop: 10,
+        backgroundColor: '#90ee90',
+        borderRadius: 5,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: Dimensions.get('window').width / 1.3,
+        ...ThemeConstants.shadowElevateButtonLow
+    },
+    success: {
+        color: 'green',
+        fontSize: 15,
     }
+});
+
+const mapStateToProps = state => ({
+    user: state.user
 });
 
 const mapDispatchToProps = {
@@ -265,4 +381,4 @@ const mapDispatchToProps = {
     loginUser,
 };
 
-export default connect(null, mapDispatchToProps)(LoginScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

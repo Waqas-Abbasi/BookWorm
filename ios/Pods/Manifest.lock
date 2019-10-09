@@ -39,53 +39,16 @@ PODS:
     - UMFileSystemInterface
   - EXWebBrowser (7.0.1):
     - UMCore
-  - FBSDKCoreKit (5.6.0):
-    - FBSDKCoreKit/Basics (= 5.6.0)
-    - FBSDKCoreKit/Core (= 5.6.0)
-  - FBSDKCoreKit/Basics (5.6.0)
-  - FBSDKCoreKit/Core (5.6.0):
-    - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.6.0):
-    - FBSDKLoginKit/Login (= 5.6.0)
-  - FBSDKLoginKit/Login (5.6.0):
-    - FBSDKCoreKit (~> 5.0)
-  - FBSDKShareKit (5.6.0):
-    - FBSDKShareKit/Share (= 5.6.0)
-  - FBSDKShareKit/Share (5.6.0):
-    - FBSDKCoreKit (~> 5.0)
   - Folly (2018.10.22.00):
     - boost-for-react-native
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - GoogleSignIn (4.4.0):
-    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
-    - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
-    - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleToolboxForMac/DebugUtils (2.2.1):
-    - GoogleToolboxForMac/Defines (= 2.2.1)
-  - GoogleToolboxForMac/Defines (2.2.1)
-  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.2.1)":
-    - GoogleToolboxForMac/DebugUtils (= 2.2.1)
-    - GoogleToolboxForMac/Defines (= 2.2.1)
-    - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.1)"
-  - "GoogleToolboxForMac/NSString+URLArguments (2.2.1)"
-  - GTMSessionFetcher/Core (1.2.2)
   - React (0.59.10):
     - React/Core (= 0.59.10)
-  - react-native-fbsdk (0.10.3):
+  - react-native-background-timer (2.1.1):
     - React
-    - react-native-fbsdk/Core (= 0.10.3)
-    - react-native-fbsdk/Login (= 0.10.3)
-    - react-native-fbsdk/Share (= 0.10.3)
-  - react-native-fbsdk/Core (0.10.3):
-    - FBSDKCoreKit (~> 5.6.0)
-    - React
-  - react-native-fbsdk/Login (0.10.3):
-    - FBSDKLoginKit (~> 5.6.0)
-    - React
-  - react-native-fbsdk/Share (0.10.3):
-    - FBSDKShareKit (~> 5.6.0)
+  - react-native-slider (2.0.2):
     - React
   - React/Core (0.59.10):
     - yoga (= 0.59.10.React)
@@ -140,10 +103,11 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - RNGestureHandler (1.3.0):
+  - ReactNativeAudioToolkit (2.0.2):
     - React
-  - RNGoogleSignin (2.0.0):
-    - GoogleSignIn (~> 4.4.0)
+  - RNCAsyncStorage (1.6.2):
+    - React
+  - RNGestureHandler (1.3.0):
     - React
   - RNReanimated (1.2.0):
     - React
@@ -185,7 +149,8 @@ DEPENDENCIES:
   - EXWebBrowser (from `../node_modules/expo-web-browser/ios`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
-  - react-native-fbsdk (from `../node_modules/react-native-fbsdk`)
+  - react-native-background-timer (from `../node_modules/react-native-background-timer`)
+  - "react-native-slider (from `../node_modules/@react-native-community/slider`)"
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
@@ -200,8 +165,9 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - "ReactNativeAudioToolkit (from `../node_modules/@react-native-community/audio-toolkit`)"
+  - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler/RNGestureHandler.podspec`)
-  - RNGoogleSignin (from `../node_modules/react-native-google-signin`)
   - RNReanimated (from `../node_modules/react-native-reanimated/RNReanimated.podspec`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -222,12 +188,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - boost-for-react-native
-    - FBSDKCoreKit
-    - FBSDKLoginKit
-    - FBSDKShareKit
-    - GoogleSignIn
-    - GoogleToolboxForMac
-    - GTMSessionFetcher
 
 EXTERNAL SOURCES:
   BVLinearGradient:
@@ -276,12 +236,16 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   React:
     :path: "../node_modules/react-native"
-  react-native-fbsdk:
-    :path: "../node_modules/react-native-fbsdk"
+  react-native-background-timer:
+    :path: "../node_modules/react-native-background-timer"
+  react-native-slider:
+    :path: "../node_modules/@react-native-community/slider"
+  ReactNativeAudioToolkit:
+    :path: "../node_modules/@react-native-community/audio-toolkit"
+  RNCAsyncStorage:
+    :path: "../node_modules/@react-native-community/async-storage"
   RNGestureHandler:
     :podspec: "../node_modules/react-native-gesture-handler/RNGestureHandler.podspec"
-  RNGoogleSignin:
-    :path: "../node_modules/react-native-google-signin"
   RNReanimated:
     :podspec: "../node_modules/react-native-reanimated/RNReanimated.podspec"
   RNScreens:
@@ -343,18 +307,14 @@ SPEC CHECKSUMS:
   EXPermissions: df10ad83df2f6b647aec304619354f8ab48d5f63
   EXSQLite: ddc1e6727bd7d36e649f07590fe3ae5511c1f039
   EXWebBrowser: 18924c3d2a3a1aa95d413672f058beff589c80f4
-  FBSDKCoreKit: d6655a343868d4bb5c29a60859bab07c3be14a0b
-  FBSDKLoginKit: c5a623de88a6b0cda35b35582921f6cec2efcc36
-  FBSDKShareKit: 0d8c4cfd5c1f185d5f9c26d79758b141086e1251
   Folly: de497beb10f102453a1afa9edbf8cf8a251890de
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
-  GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
-  GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
-  GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   React: 36d0768f9e93be2473b37e7fa64f92c1d5341eef
-  react-native-fbsdk: 6e8697bdaf14db367b70a5d1c546b490f1f7b032
+  react-native-background-timer: 1b6e6b4e10f1b74c367a1fdc3c72b67c619b222b
+  react-native-slider: 5d61590f26a51cf0a858bfd1543f6d6ec8b78a6e
+  ReactNativeAudioToolkit: 4506c3df44edce0b3a95dfc80853e5c3ca0360a3
+  RNCAsyncStorage: 60a80e72d95bf02a01cace55d3697d9724f0d77f
   RNGestureHandler: 5329a942fce3d41c68b84c2c2276ce06a696d8b0
-  RNGoogleSignin: d030c6c6591db24c3cee649f64c7babf0a1699a0
   RNReanimated: 1b52415c4302f198cb581282a0166690bad62c43
   RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
@@ -372,6 +332,6 @@ SPEC CHECKSUMS:
   UMTaskManagerInterface: 1e70fe58b872355f0ecb44fb81bb1a16484047f0
   yoga: 684513b14b03201579ba3cee20218c9d1298b0cc
 
-PODFILE CHECKSUM: a876a8b3b311224bf3b6db1195514fe5225d0a1f
+PODFILE CHECKSUM: dcbc812c68caa0bb12cc3f3b8b896afbedc62657
 
 COCOAPODS: 1.8.0

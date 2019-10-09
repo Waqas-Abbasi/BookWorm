@@ -3,6 +3,10 @@ package com.bookworm;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.slider.ReactSliderPackage;
+import com.reactnativecommunity.rctaudiotoolkit.AudioPackage;
+import com.ocetnik.timer.BackgroundTimerPackage;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
@@ -45,6 +49,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactSliderPackage(),
+            new AudioPackage(),
+            new BackgroundTimerPackage(),
+            new AsyncStoragePackage(),
             new RNGoogleSigninPackage(),
             new FBSDKPackage(),
             new SplashScreenReactPackage(),

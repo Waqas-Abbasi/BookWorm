@@ -35,8 +35,13 @@ target 'BookWorm' do
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
-  pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
 
-  pod 'RNGoogleSignin', :path => '../node_modules/react-native-google-signin'
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
+  pod 'react-native-background-timer', :path => '../node_modules/react-native-background-timer'
+
+  pod 'ReactNativeAudioToolkit', :path => '../node_modules/@react-native-community/audio-toolkit'
+
+  pod 'react-native-slider', :path => '../node_modules/@react-native-community/slider'
 
 end

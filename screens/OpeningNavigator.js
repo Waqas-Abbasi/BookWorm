@@ -1,13 +1,17 @@
-import {createAppContainer} from 'react-navigation';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack'
 import LoginScreen from './LoginScreen';
 import TabNavigator from './TabNavigator';
+import AuthLoadingScreen from './AuthLoadingScreen';
 
-const OpeningNavigator = createStackNavigator({
+const OpeningNavigator = createSwitchNavigator({
     LoginScreen: LoginScreen,
-    MainApp: TabNavigator
+    MainApp: TabNavigator,
+    AuthLoading: AuthLoadingScreen
 }, {
-    initialRouteName: 'LoginScreen',
+    //TODO Reset
+    //initialRouteName: 'AuthLoading',
+    initialRouteName: 'MainApp',
     headerMode: 'none',
     navigationOptions: {
         headerVisible: false,

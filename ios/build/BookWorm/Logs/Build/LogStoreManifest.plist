@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>B9018DBD-9F6B-4013-AAF1-2B7A08680FDC</key>
+		<key>08945034-400F-41E1-AA12-AF9DAFF4DBFF</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>B9018DBD-9F6B-4013-AAF1-2B7A08680FDC.xcactivitylog</string>
+			<string>08945034-400F-41E1-AA12-AF9DAFF4DBFF.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -32,15 +32,15 @@
 			<key>signature</key>
 			<string>Building workspace BookWorm with scheme BookWorm and configuration Debug</string>
 			<key>timeStartedRecording</key>
-			<real>591742535.37394798</real>
+			<real>592265130.00585902</real>
 			<key>timeStoppedRecording</key>
-			<real>591742537.93563294</real>
+			<real>592265132.51146901</real>
 			<key>title</key>
 			<string>Building workspace BookWorm with scheme BookWorm and configuration Debug</string>
 			<key>uniqueIdentifier</key>
-			<string>B9018DBD-9F6B-4013-AAF1-2B7A08680FDC</string>
+			<string>08945034-400F-41E1-AA12-AF9DAFF4DBFF</string>
 		</dict>
-		<key>EDD5F8E7-D28A-4B94-89DE-1DE2A2A29F00</key>
+		<key>AD6D4D99-3FC1-4357-816A-707D214A1F14</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -49,13 +49,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>EDD5F8E7-D28A-4B94-89DE-1DE2A2A29F00.xcactivitylog</string>
+			<string>AD6D4D99-3FC1-4357-816A-707D214A1F14.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>E</string>
+				<string>W</string>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>BookWorm project</string>
@@ -66,13 +66,13 @@
 			<key>signature</key>
 			<string>Building workspace BookWorm with scheme BookWorm and configuration Debug</string>
 			<key>timeStartedRecording</key>
-			<real>591739679.27568996</real>
+			<real>592229497.56740797</real>
 			<key>timeStoppedRecording</key>
-			<real>591739705.21922696</real>
+			<real>592229499.79378796</real>
 			<key>title</key>
 			<string>Building workspace BookWorm with scheme BookWorm and configuration Debug</string>
 			<key>uniqueIdentifier</key>
-			<string>EDD5F8E7-D28A-4B94-89DE-1DE2A2A29F00</string>
+			<string>AD6D4D99-3FC1-4357-816A-707D214A1F14</string>
 		</dict>
 	</dict>
 </dict>
