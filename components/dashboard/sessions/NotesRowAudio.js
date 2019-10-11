@@ -22,13 +22,11 @@ class NotesRowAudio extends React.Component {
             mins: 0,
             hours: 0,
             counter: 0,
-            dateStarted: new Date(),
             timerActive: false,
         },
         recordingStartAnim: new Animated.Value(0),
         opacityAnimation: new Animated.Value(0),
         opacityAnimationOnce: new Animated.Value(0),
-        playbackArray: [],
         recorder: new Recorder(this.props.id + '.mp4', {
             bitrate: 256000,
             channels: 2,
@@ -44,6 +42,21 @@ class NotesRowAudio extends React.Component {
         lastSeek: 0,
         loading: false,
     };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.time !== this.state.time || prevState.audioTitle !== this.state.audioTitle || prevState.player !== this.state.player) {
+            const audioNote = {
+                ...this.props.note,
+                state: {
+                    time: this.state.time,
+                    audioTitle: this.state.audioTitle,
+                    player: this.state.player
+                }
+            };
+
+            this.props.updateNote(audioNote);
+        }
+    }
 
     startRecordingAnimation = () => {
         Animated.timing(
@@ -270,39 +283,39 @@ class NotesRowAudio extends React.Component {
             'Delete Recorded Audio Note?',
             'This will remove your recorded audio note. You cannot undo this action',
             [
-                {text: 'Remove', onPress: () => {
-                    this.toggleAudioMoreMenu();
-                    this.setState({
-                        audioMoreMenuVisible: false,
-                        time: {
-                            secs: 0,
-                            mins: 0,
-                            hours: 0,
-                            counter: 0,
-                            dateStarted: new Date(),
-                            timerActive: false,
-                        },
-                        recordingStartAnim: new Animated.Value(0),
-                        opacityAnimation: new Animated.Value(0),
-                        opacityAnimationOnce: new Animated.Value(0),
-                        playbackArray: [],
-                        recorder: new Recorder(this.props.id + '.mp4', {
-                            bitrate: 256000,
-                            channels: 2,
-                            sampleRate: 44100,
-                            quality: 'max'
-                        }),
-                        playButtonVisible: false,
-                        player: new Player(this.props.id + '.mp4'),
-                        progress: 0,
-                        progressInterval: 0,
-                        playerActive: false,
-                        playerPosition: 0,
-                        lastSeek: 0,
-                        loading: false,
-                    });
+                {
+                    text: 'Remove', onPress: () => {
+                        this.toggleAudioMoreMenu();
+                        this.setState({
+                            audioMoreMenuVisible: false,
+                            time: {
+                                secs: 0,
+                                mins: 0,
+                                hours: 0,
+                                counter: 0,
+                                timerActive: false,
+                            },
+                            recordingStartAnim: new Animated.Value(0),
+                            opacityAnimation: new Animated.Value(0),
+                            opacityAnimationOnce: new Animated.Value(0),
+                            recorder: new Recorder(this.props.id + '.mp4', {
+                                bitrate: 256000,
+                                channels: 2,
+                                sampleRate: 44100,
+                                quality: 'max'
+                            }),
+                            playButtonVisible: false,
+                            player: new Player(this.props.id + '.mp4'),
+                            progress: 0,
+                            progressInterval: 0,
+                            playerActive: false,
+                            playerPosition: 0,
+                            lastSeek: 0,
+                            loading: false,
+                        });
 
-                    }},
+                    }
+                },
                 {
                     text: 'Cancel',
                     onPress: () => {
@@ -588,14 +601,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderColor: 'white',
-        ...ThemeConstants.shadowElevateButton,
     },
     innerCircle: {
         backgroundColor: 'red',
         height: 45,
         width: 45,
         borderRadius: 30,
-        ...ThemeConstants.shadowElevateButton,
     },
     recordingActiveOuter: {
         height: 50,
@@ -606,7 +617,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderColor: 'white',
-        ...ThemeConstants.shadowElevateButton,
     },
     recordingActiveInner: {
         backgroundColor: 'red',
@@ -623,7 +633,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderColor: 'white',
-        ...ThemeConstants.shadowElevateButton,
     },
     audioPauseIcon: {
         justifyContent: 'center',

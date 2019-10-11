@@ -1,24 +1,38 @@
 import React, {useEffect, useRef} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {FlatList, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {ColorConstants} from '../../Constants';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import {connect} from 'react-redux';
+import SessionCard from '../../components/dashboard/sessions/SessionCard';
 
 const SessionScreen = props => {
 
-    const setParams = useRef(props.navigation.setParams);
+    // const setParams = useRef(props.navigation.setParams);
 
     const addSession = () => {
-        props.navigation.navigate('AddSession');
+        props.navigation.navigate('AddSession', {
+            bookKey: props.book.key,
+            pagesRead: props.book.pagesRead,
+        });
     };
 
     useEffect(() => {
-        setParams.current({addSession: addSession});
+        props.navigation.setParams({
+            addSession: addSession
+        });
     }, []);
 
+
+    const renderSessionRow = ({item, index}) => (
+        <SessionCard session={item} colorID={index % 4}/>
+    );
     return (
         <View style={styles.mainContainer}>
-
+            <FlatList
+                data={props.book.sessionList}
+                renderItem={renderSessionRow}
+                keyExtractor={(item, index) => item + index}/>
         </View>
     );
 };
@@ -61,6 +75,14 @@ const styles = StyleSheet.create({
     centerItem: {
         paddingRight: 5,
         justifyContent: 'center',
+        alignItems: 'center',
+        width: 40,
     },
 });
-export default SessionScreen;
+
+const mapStateToProps = (state, props) => ({
+    //TODO Remove Hardcoded ID
+    // book: state.books.find(item => item.key === props.navigation.getParam('bookKey'))
+    book: state.books.find(item => item.key === 0)
+});
+export default connect(mapStateToProps)(SessionScreen);

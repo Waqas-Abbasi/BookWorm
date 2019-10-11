@@ -11,3 +11,8 @@ export const deleteBook = book => {
 			payload: book
 	}
 };
+
+export const addSession = session => ({
+	type:actionTypes.ADD_SESSION,
+	payload: session,
+});

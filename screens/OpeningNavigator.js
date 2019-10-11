@@ -5,12 +5,9 @@ import TabNavigator from './TabNavigator';
 import AuthLoadingScreen from './AuthLoadingScreen';
 
 const OpeningNavigator = createSwitchNavigator({
-    LoginScreen: LoginScreen,
     MainApp: TabNavigator,
-    AuthLoading: AuthLoadingScreen
 }, {
     //TODO Reset
-    //initialRouteName: 'AuthLoading',
     initialRouteName: 'MainApp',
     headerMode: 'none',
     navigationOptions: {

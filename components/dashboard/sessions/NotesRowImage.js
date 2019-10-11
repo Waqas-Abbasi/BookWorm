@@ -24,6 +24,20 @@ class NotesRowImage extends React.Component {
     };
 
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.img !== this.state.img || prevState.imageTitle !== this.state.imageTitle) {
+            const imgNote = {
+                ...this.props.note,
+                state: {
+                    img: this.state.img,
+                    imageTitle: this.state.imageTitle,
+                }
+            };
+
+            this.props.updateNote(imgNote);
+        }
+    }
+
     handleImageTitle = val => {
         this.setState({
             imageTitle: val,

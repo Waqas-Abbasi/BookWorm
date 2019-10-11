@@ -34,9 +34,7 @@ const BookCard = props => {
     const bookProgress = Math.round((props.book.pagesRead / props.book.totalPages) * 100);
 
     const openSessionPage = () => {
-      props.navigation.navigate('Sessions', {
-          sessionList: props.book.sessionList
-      })
+      props.navigation.navigate('Sessions')
     };
 
     return (

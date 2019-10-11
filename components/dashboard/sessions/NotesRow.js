@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Alert, Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {ColorConstants, ThemeConstants} from '../../../Constants';
 import NotesRowAudio from './NotesRowAudio';
@@ -15,6 +15,19 @@ const NotesRow = props => {
     const toggleTextNoteMoreMenu = () => {
         setTextMoreMenuVisible(!textMoreMenuVisible);
     };
+
+    useEffect(() => {
+        const note = {
+          ...props.note,
+        };
+
+        note.state = {
+          textTitle,
+          textNote,
+        };
+
+        props.updateNote(note)
+    }, [textNote, textTitle]);
 
     const clearTextFields = () => {
         Alert.alert(
@@ -41,7 +54,7 @@ const NotesRow = props => {
     };
 
     let noteComponent;
-    switch (props.type) {
+    switch (props.note.noteType) {
         //Case if Note is Text
         case (0):
             noteComponent = (
@@ -107,13 +120,13 @@ const NotesRow = props => {
         //Case if Note is Image
         case (1):
             noteComponent = (
-                <NotesRowImage deleteNoteRow={props.deleteNoteRow}/>
+                <NotesRowImage note={props.note} updateNote={props.updateNote} deleteNoteRow={props.deleteNoteRow}/>
             );
             break;
         //Case if Note is Audio
         case (2):
             noteComponent = (
-                <NotesRowAudio id={props.id} deleteNoteRow={props.deleteNoteRow}/>
+                <NotesRowAudio note={props.note} updateNote={props.updateNote} id={props.id} deleteNoteRow={props.deleteNoteRow}/>
             );
             break;
     }
@@ -138,10 +151,10 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: '#3b3b3b',
         width: Dimensions.get('window').width,
-        ...ThemeConstants.shadowElevateButtonExtremeLow,
         borderTopWidth: 0.25,
         borderBottomWidth: 0.25,
         borderColor: ColorConstants.placeholderText,
+        ...ThemeConstants.shadowElevateButtonLow,
     },
     textInputTitle: {
         flex: 1,

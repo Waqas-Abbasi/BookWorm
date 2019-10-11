@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>08945034-400F-41E1-AA12-AF9DAFF4DBFF</key>
+		<key>01DAE892-7A15-46D1-A9B0-3298834FD07C</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>08945034-400F-41E1-AA12-AF9DAFF4DBFF.xcactivitylog</string>
+			<string>01DAE892-7A15-46D1-A9B0-3298834FD07C.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -32,15 +32,15 @@
 			<key>signature</key>
 			<string>Building workspace BookWorm with scheme BookWorm and configuration Debug</string>
 			<key>timeStartedRecording</key>
-			<real>592265130.00585902</real>
+			<real>592506973.66342795</real>
 			<key>timeStoppedRecording</key>
-			<real>592265132.51146901</real>
+			<real>592506976.21669805</real>
 			<key>title</key>
 			<string>Building workspace BookWorm with scheme BookWorm and configuration Debug</string>
 			<key>uniqueIdentifier</key>
-			<string>08945034-400F-41E1-AA12-AF9DAFF4DBFF</string>
+			<string>01DAE892-7A15-46D1-A9B0-3298834FD07C</string>
 		</dict>
-		<key>AD6D4D99-3FC1-4357-816A-707D214A1F14</key>
+		<key>13E700BA-56AF-4996-9B1B-AB0E696F99F8</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -49,7 +49,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>AD6D4D99-3FC1-4357-816A-707D214A1F14.xcactivitylog</string>
+			<string>13E700BA-56AF-4996-9B1B-AB0E696F99F8.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -66,13 +66,13 @@
 			<key>signature</key>
 			<string>Building workspace BookWorm with scheme BookWorm and configuration Debug</string>
 			<key>timeStartedRecording</key>
-			<real>592229497.56740797</real>
+			<real>592511146.581756</real>
 			<key>timeStoppedRecording</key>
-			<real>592229499.79378796</real>
+			<real>592511149.11844802</real>
 			<key>title</key>
 			<string>Building workspace BookWorm with scheme BookWorm and configuration Debug</string>
 			<key>uniqueIdentifier</key>
-			<string>AD6D4D99-3FC1-4357-816A-707D214A1F14</string>
+			<string>13E700BA-56AF-4996-9B1B-AB0E696F99F8</string>
 		</dict>
 	</dict>
 </dict>

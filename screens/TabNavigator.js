@@ -10,7 +10,7 @@ const TabNavigator = createBottomTabNavigator(
 		Search: SearchNavigator,
 	},
 	{
-		initialRouteName: 'Dashboard'
+		initialRouteName: 'Search'
 	}
 );
 export default createAppContainer(TabNavigator);

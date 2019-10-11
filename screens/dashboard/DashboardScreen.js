@@ -1,5 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {Animated, Button, Dimensions, FlatList, Keyboard, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {
+    Animated,
+    Dimensions,
+    FlatList,
+    Keyboard,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
+} from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import BookCard from '../../components/dashboard/BookCard';
 import {connect} from 'react-redux';
@@ -8,6 +18,8 @@ import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import SearchBar from '../../components/SearchBar';
 import {Icon} from 'react-native-elements';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
+import {NavigationEvents} from 'react-navigation';
+
 
 //TODO Add Skeleton Loading for Assets
 const DashboardScreen = props => {
@@ -15,6 +27,8 @@ const DashboardScreen = props => {
     const [searchValue, handleSearchValue] = useState('');
     const [slideSearchBarAnim] = useState(new Animated.Value(0));
     const [bookList, setBookList] = useState(props.books);
+
+    const listRef = useRef(null);
 
     //TODO Maybe make the search more advanced?
     useEffect(() => {
@@ -60,11 +74,57 @@ const DashboardScreen = props => {
 
     return (
         <View style={styles.mainContainer}>
-            <View style={styles.dashboardHeader}>
-                {/*Add Book Icon*/}
-                <View style={styles.centerItem}>
+            <ScrollView
+                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
+                ref={listRef}>
+                <NavigationEvents
+                    onDidFocus={payload => {
+                        if (payload.action.params) {
+                            if (payload.action.params.scrollBottom) {
+                                setTimeout(() => {
+                                    listRef.current.scrollToEnd({animated: true})
+                                }, 250);
+                            }
+                        }
+                    }}
+                />
+                <View style={styles.dashboardHeader}>
+                    {/*Add Book Icon*/}
+                    <View style={styles.centerItem}>
+                        <Animated.View style={{
+                            transform: [
+                                {
+                                    scaleY: slideSearchBarAnim.interpolate({
+                                        inputRange: [0, 1],
+                                        outputRange: [1, 0]
+                                    })
+                                },
+                                {
+                                    scaleX: slideSearchBarAnim.interpolate({
+                                        inputRange: [0, 1],
+                                        outputRange: [1, 0]
+                                    })
+                                },
+                            ]
+                        }}>
+                            <TouchableOpacity style={[styles.centerItem, styles.addIcon]} onPress={addBook}>
+                                <AntDesignIcon
+                                    name='plus'
+                                    size={25}/>
+                            </TouchableOpacity>
+                        </Animated.View>
+                    </View>
+
+                    {/*Main Header*/}
                     <Animated.View style={{
                         transform: [
+                            {
+                                translateX: slideSearchBarAnim.interpolate({
+                                    inputRange: [0, 1],
+                                    outputRange: [0, -155]
+                                })
+                            },
                             {
                                 scaleY: slideSearchBarAnim.interpolate({
                                     inputRange: [0, 1],
@@ -79,98 +139,72 @@ const DashboardScreen = props => {
                             },
                         ]
                     }}>
-                        <TouchableOpacity style={[styles.centerItem, styles.addIcon]} onPress={addBook}>
-                            <AntDesignIcon
-                                name='plus'
-                                size={25}/>
-                        </TouchableOpacity>
+                        <Text style={styles.mainHeader}>Library</Text>
                     </Animated.View>
-                </View>
 
-                {/*Main Header*/}
-                <Animated.View style={{
-                    transform: [
-                        {
-                            translateX: slideSearchBarAnim.interpolate({
-                                inputRange: [0, 1],
-                                outputRange: [0, -155]
-                            })
-                        },
-                        {
-                            scaleY: slideSearchBarAnim.interpolate({
-                                inputRange: [0, 1],
-                                outputRange: [1, 0]
-                            })
-                        },
-                        {
-                            scaleX: slideSearchBarAnim.interpolate({
-                                inputRange: [0, 1],
-                                outputRange: [1, 0]
-                            })
-                        },
-                    ]
-                }}>
-                    <Text style={styles.mainHeader}>Library</Text>
-                </Animated.View>
-
-                {/*Search Bar*/}
-                <View>
-                    <Animated.View style={{
-                        ...styles.searchIcon,
-                        transform: [
-                            {
-                                translateX: slideSearchBarAnim.interpolate({
-                                    inputRange: [0, 1],
-                                    outputRange: [0, -Dimensions.get('window').width / 1.15]
-                                })
-                            },
-                        ]
-                    }}>
-                        <TouchableOpacity style={styles.centerItem} onPress={openSearchBar}>
-                            <Icon name="search" size={30}/>
-                        </TouchableOpacity>
-                    </Animated.View>
-                    <Animated.View
-                        style={{
-                            ...styles.searchBar,
+                    {/*Search Bar*/}
+                    <View>
+                        <Animated.View style={{
+                            ...styles.searchIcon,
                             transform: [
                                 {
                                     translateX: slideSearchBarAnim.interpolate({
                                         inputRange: [0, 1],
-                                        outputRange: [0, -Dimensions.get('window').width / 1.07]
+                                        outputRange: [0, -Dimensions.get('window').width / 1.15]
                                     })
                                 },
-                            ],
-                            width: slideSearchBarAnim.interpolate({
-                                inputRange: [0, 1],
-                                outputRange: [0, Dimensions.get('window').width / 1.05]
-                            }),
-                            opacity: slideSearchBarAnim
+                            ]
                         }}>
-                        <SearchBar value={searchValue} customStyle={styles.searchBarInner}
-                                   handleValueChange={handleSearchValue}
-                                   placeholderText='Search My Books'/>
-                    </Animated.View>
-                    <Animated.View
-                        style={{
-                            ...styles.closeSearchIcon,
-                            transform: [
-                                {
-                                    scaleY: slideSearchBarAnim
-                                },
-                                {
-                                    scaleX: slideSearchBarAnim
-                                },
-                            ],
-                            opacity: slideSearchBarAnim
-                        }}>
-                        <TouchableOpacity onPress={closeSearchBar}>
-                            <EntypoIcon name='cross' size={32}/>
-                        </TouchableOpacity>
-                    </Animated.View>
+                            <TouchableOpacity style={styles.centerItem} onPress={openSearchBar}>
+                                <Icon name="search" size={30}/>
+                            </TouchableOpacity>
+                        </Animated.View>
+                        <Animated.View
+                            style={{
+                                ...styles.searchBar,
+                                transform: [
+                                    {
+                                        translateX: slideSearchBarAnim.interpolate({
+                                            inputRange: [0, 1],
+                                            outputRange: [0, -Dimensions.get('window').width / 1.07]
+                                        })
+                                    },
+                                ],
+                                width: slideSearchBarAnim.interpolate({
+                                    inputRange: [0, 1],
+                                    outputRange: [0, Dimensions.get('window').width / 1.05]
+                                }),
+                                opacity: slideSearchBarAnim
+                            }}>
+                            <SearchBar value={searchValue} customStyle={styles.searchBarInner}
+                                       handleValueChange={handleSearchValue}
+                                       placeholderText='Search My Books'/>
+                        </Animated.View>
+                        <Animated.View
+                            style={{
+                                ...styles.closeSearchIcon,
+                                transform: [
+                                    {
+                                        scaleY: slideSearchBarAnim
+                                    },
+                                    {
+                                        scaleX: slideSearchBarAnim
+                                    },
+                                ],
+                                opacity: slideSearchBarAnim
+                            }}>
+                            <TouchableOpacity onPress={closeSearchBar}>
+                                <EntypoIcon name='cross' size={32}/>
+                            </TouchableOpacity>
+                        </Animated.View>
+                    </View>
                 </View>
-            </View>
-            <FlatList data={bookList} renderItem={renderBook} keyExtractor={(item, index) => item + index}/>
+                <FlatList
+                    data={bookList}
+                    renderItem={renderBook}
+                    keyExtractor={(item, index) => item + index}
+                    />
+            </ScrollView>
         </View>
     );
 };
@@ -232,4 +266,5 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     books: state.books
 });
+
 export default connect(mapStateToProps)(DashboardScreen);

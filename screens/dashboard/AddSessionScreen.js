@@ -3,7 +3,6 @@ import {
     Alert,
     Dimensions,
     FlatList,
-    Keyboard,
     KeyboardAvoidingView,
     StyleSheet,
     Text,
@@ -18,7 +17,10 @@ import NotesRow from '../../components/dashboard/sessions/NotesRow';
 import Modal from 'react-native-modal';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {connect} from 'react-redux';
+import {addSession} from '../../redux/actions/bookActions';
 
+//TODO Checkbox - Update Ending Page On Dashboard
 class AddSessionScreen extends React.Component {
 
     static navigationOptions = ({navigation}) => ({
@@ -52,23 +54,91 @@ class AddSessionScreen extends React.Component {
             dateStarted: new Date(),
             timerActive: false,
         },
-        bounce: false,
         isAddNotesModalActive: false,
-        notesStructure: [
-            {id: 0, noteType: 0},
-            {id: 1, noteType: 1},
-            {id: 2, noteType: 2},
+        notesList: [
         ],
-        notesList: {
-            textNotes: [],
-            imageNotes: [],
-            audioNotes: [],
-            documentNotes: [],
-        },
         sessionName: '',
         startingPage: this.props.navigation.getParam('pagesRead') + '',
         endingPage: '',
+        sessionNameRequired: false,
+        startingPageRequired: true,
+        endingPageRequired: false,
     };
+
+    updateNoteState = note => {
+        const targetNoteIndex = this.state.notesList.findIndex(item => item.id === note.id);
+
+        const notesListTemp = [...this.state.notesList];
+        notesListTemp[targetNoteIndex] = note;
+
+        this.setState({
+            notesList: notesListTemp,
+        });
+    };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.notesList !== this.state.notesList) {
+            this.props.navigation.setParams({
+                saveSession: this.saveSession,
+            });
+        }
+    }
+
+    saveSession = () => {
+        let saveSession = true;
+        if (this.state.sessionName === '') {
+            this.setState({
+                sessionNameRequired: true,
+            });
+            saveSession = false;
+        } else {
+            this.setState({
+                sessionNameRequired: false,
+            });
+        }
+
+        if (this.state.startingPage === '') {
+            this.setState({
+                startingPageRequired: true,
+            });
+            saveSession = false;
+        } else {
+            this.setState({
+                startingPageRequired: false,
+            });
+        }
+
+        if (this.state.endingPage === '') {
+            this.setState({
+                endingPageRequired: true,
+            });
+            saveSession = false;
+        } else {
+            this.setState({
+                endingPageRequired: false,
+            });
+        }
+
+        if (saveSession) {
+            const session = {
+                bookKey: this.props.navigation.getParam('bookKey'),
+                time: {...this.state.time},
+                notesList: [...this.state.notesList],
+                sessionName: this.state.sessionName,
+                startingPage: this.state.startingPage,
+                endingPage: this.state.endingPage,
+            };
+
+            this.props.addSession(session);
+            this.props.navigation.goBack();
+        }
+    };
+
+    componentDidMount() {
+        this.props.navigation.setParams({
+            saveSession: this.saveSession,
+        });
+    }
 
     handleInput = key => (
         val => {
@@ -76,36 +146,16 @@ class AddSessionScreen extends React.Component {
         }
     );
 
-    keyboardDismiss = () => {
-        Keyboard.dismiss();
-    };
-
     handleStartingPage = this.handleInput('startingPage');
     handleEndingPage = this.handleInput('endingPage');
     handleSessionName = this.handleInput('sessionName');
-
-    onScroll = (event) => {
-        const scrollPosition = event && event.nativeEvent && event.nativeEvent.contentOffset && event.nativeEvent.contentOffset.y;
-        let newBouncesValue;
-
-        if (scrollPosition < 25) {
-            newBouncesValue = false;
-        } else {
-            newBouncesValue = true;
-        }
-
-        if (newBouncesValue === this.state.bounce) {
-            return;
-        }
-
-        this.setState({bounce: newBouncesValue});
-    };
 
     startTimer = () => {
         this.setState(prevState => ({
             time: {
                 ...prevState.time,
                 timerActive: true,
+                dateStarted: new Date(),
             }
         }));
 
@@ -156,9 +206,10 @@ class AddSessionScreen extends React.Component {
 
     addTextBox = () => {
         this.setState(prevState => ({
-            notesStructure: [...prevState.notesStructure, {
-                id: prevState.notesStructure.length,
+            notesList: [...prevState.notesList, {
+                id: prevState.notesList.length,
                 noteType: 0,
+                state: {}
             }]
         }));
         this.addNotesModalToggle();
@@ -166,9 +217,10 @@ class AddSessionScreen extends React.Component {
 
     addImageBox = () => {
         this.setState(prevState => ({
-            notesStructure: [...prevState.notesStructure, {
-                id: prevState.notesStructure.length,
+            notesList: [...prevState.notesList, {
+                id: prevState.notesList.length,
                 noteType: 1,
+                state: {}
             }]
         }));
         this.addNotesModalToggle();
@@ -176,9 +228,10 @@ class AddSessionScreen extends React.Component {
 
     addAudioBox = () => {
         this.setState(prevState => ({
-            notesStructure: [...prevState.notesStructure, {
-                id: prevState.notesStructure.length,
+            notesList: [...prevState.notesList, {
+                id: prevState.notesList.length,
                 noteType: 2,
+                state: {}
             }]
         }));
         this.addNotesModalToggle();
@@ -203,9 +256,9 @@ class AddSessionScreen extends React.Component {
             [
                 {
                     text: 'Delete', onPress: () => {
-                        const filteredList = this.state.notesStructure.filter(x => x.id != item.id);
+                        const filteredList = this.state.notesList.filter(x => x.id != item.id);
                         this.setState({
-                            notesStructure: filteredList,
+                            notesList: filteredList,
                         });
                     }
                 },
@@ -219,7 +272,7 @@ class AddSessionScreen extends React.Component {
     };
 
     renderNotesRow = ({item}) => (
-        <NotesRow type={item.noteType} deleteNoteRow={() => this.deleteNoteRow(item)}/>
+        <NotesRow updateNote={this.updateNoteState} note={item} deleteNoteRow={() => this.deleteNoteRow(item)}/>
     );
 
     renderPageHeader = () => {
@@ -258,28 +311,54 @@ class AddSessionScreen extends React.Component {
                 <KeyboardAvoidingView behavior='padding' style={styles.pageInfo}>
                     <View style={styles.textInputContainer}>
                         <Text style={styles.innerContainerText}>Session Name</Text>
-                        <TextInput
-                            style={styles.TextInput}
-                            value={this.state.sessionName}
-                            onChangeText={val => this.handleSessionName(val)}
-                            keyboardType='numeric'/>
+                        {!this.state.sessionNameRequired ?
+                            <TextInput
+                                style={styles.TextInput}
+                                value={this.state.sessionName}
+                                onChangeText={val => this.handleSessionName(val)}/>
+                            :
+                            <TextInput
+                                style={styles.requiredTextInput}
+                                value={this.state.sessionName}
+                                onChangeText={val => this.handleSessionName(val)}
+                                placeholderTextColor={'#F08080'}
+                                placeholder={'Required Field'}/>
+                        }
                     </View>
                     <View style={styles.textInputContainer}>
                         <Text style={styles.innerContainerText}>Starting Page</Text>
-                        <TextInput
-                            style={styles.TextInput}
-                            value={this.state.startingPage}
-                            onChangeText={val => this.handleStartingPage(val)}
-                            keyboardType='numeric'/>
+                        {this.state.startingPage ?
+                            <TextInput
+                                style={styles.TextInput}
+                                value={this.state.startingPage}
+                                onChangeText={val => this.handleStartingPage(val)}
+                                keyboardType='numeric'/>
+                            :
+                            <TextInput
+                                style={styles.requiredTextInput}
+                                value={this.state.startingPage}
+                                onChangeText={val => this.handleStartingPage(val)}
+                                placeholderTextColor={'#F08080'}
+                                placeholder={'Required Field'}/>
+                        }
                     </View>
                     <View style={styles.textInputContainer}>
                         <Text style={styles.innerContainerText}>Page Left Off</Text>
-                        <TextInput
-                            style={[styles.TextInput, styles.noBottomBorder]}
-                            value={this.state.endingPage}
-                            onChangeText={val => this.handleEndingPage(val)}
-                            keyboardType='numeric'
-                        />
+                        {!this.state.endingPageRequired ?
+                            <TextInput
+                                style={[styles.TextInput, styles.noBottomBorder]}
+                                value={this.state.endingPage}
+                                onChangeText={val => this.handleEndingPage(val)}
+                                keyboardType='numeric'/>
+                            :
+                            <TextInput
+                                style={styles.requiredTextInput}
+                                value={this.state.endingPage}
+                                onChangeText={val => this.handleEndingPage(val)}
+                                keyboardType='numeric'
+                                placeholderTextColor={'#F08080'}
+                                placeholder={'Required Field'}/>
+                        }
                     </View>
                 </KeyboardAvoidingView>
             </View>
@@ -306,7 +385,7 @@ class AddSessionScreen extends React.Component {
                     {this.renderPageHeader()}
                     <View style={styles.notesListContainer}>
                         <FlatList
-                            data={this.state.notesStructure}
+                            data={this.state.notesList}
                             renderItem={this.renderNotesRow}
                             style={styles.notesList}
                             keyExtractor={item => '' + item.id}
@@ -477,10 +556,20 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.25,
         borderBottomColor: 'silver',
     },
+    requiredTextInput: {
+        width: Dimensions.get('window').width / 1.1,
+        height: 30,
+        fontSize: 16,
+        borderBottomWidth: 0.25,
+        borderBottomColor: 'red',
+    },
     pageInfo: {
         marginTop: 20,
         marginBottom: 20,
     }
 });
 
-export default AddSessionScreen;
+const mapDispatchToProps = {
+    addSession: addSession,
+};
+export default connect(null, mapDispatchToProps)(AddSessionScreen);
